@@ -27,7 +27,7 @@ parser.add_argument(
 parser.add_argument(
     '-ext',
     nargs=1,
-    default='.srt',
+    default=['srt'],
     help='Extension to use on file out'
 )
 
