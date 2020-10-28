@@ -11,3 +11,9 @@ def txt_to_docx(fileIn, fileOut):
     document.save(f"{fileOut}.docx")
 
 
+def docx_to_txt(fileIn, fileOut):
+
+    file_out = open(fileOut, "w")
+    file_out.write(Document(fileIn).paragraphs[0].text)
+    file_out.close()
+
