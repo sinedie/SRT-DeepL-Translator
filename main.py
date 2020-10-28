@@ -28,14 +28,16 @@ def convert_all(file_paths):
             print(f"File '{path}' doesn't exist, skipping...")
             continue
 
-        # paths = os.listdir(path) if os.path.isdir(path) else [path]
+        paths = [os.path.join(path, file_path) for file_path in os.listdir(path)] if os.path.isdir(path) else [path]
 
-        # for file_path in paths:
-        #     if not os.path.isdir(file_path):
-        convert(path)
+        for file_path in paths:
+            if not os.path.isdir(file_path):
+                convert(file_path)
 
 
 def convert(file_in):
+    print(f"converting {file_in}")
+
     basename = os.path.splitext(file_in)[0]
 
     file_type = magic.from_file(file_in)
