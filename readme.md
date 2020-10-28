@@ -1,7 +1,7 @@
 # subtitle-converter
 
 # usage
-"""
+```
 main.py [-h] [-v] path [path ...]
 
 Converts plain text files to docx and viceversa
@@ -12,7 +12,7 @@ positional arguments:
 optional arguments:
     -h, --help: show this help message and exit
     -v, --verbose: increase output verbosity
-"""
+```
 
 # Dependeces
 use pip install -r requirements or execute setup.sh
