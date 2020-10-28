@@ -24,6 +24,13 @@ parser.add_argument(
     action="store_true"
 )
 
+parser.add_argument(
+    '-ext',
+    nargs=1,
+    default='.srt',
+    help='Extension to use on file out'
+)
+
 args = parser.parse_args()
 
 
@@ -48,14 +55,14 @@ def convert(file_in):
     file_type = magic.from_file(file_in)
 
     if file_type == "Microsoft OOXML":
-        file_out = f"{basename}.txt"
+        file_out = f"{basename}.{args.ext[0]}"
         docx_to_txt(file_in, file_out)
     else:
         try:
             file_out = f"{basename}.docx"
             txt_to_docx(file_in, file_out)
         except:
-            print(f"Error on file {file_in}. {file_type} can't be converted into docx. Skipping")
+            print(f"Error on file {file_in}. {file_type} can't be converted into docx. Skipping...")
 
 
 def txt_to_docx(file_in, file_out):
