@@ -1,31 +1,24 @@
 # subtitle-converter
 
 # usage
-python main.py [-h] path [path ...]
+"""
+main.py [-h] [-v] path [path ...]
 
-Converts txt to docx and viceversa.
+Converts plain text files to docx and viceversa
 
 positional arguments:
-
-  path        Archivo a convertir
+    path: File to convert
 
 optional arguments:
-
-  -h, --help  show help message and exit
+    -h, --help: show this help message and exit
+    -v, --verbose: increase output verbosity
+"""
 
 # Dependeces
-use pip install -r requirements
-or execute setup.sh
+use pip install -r requirements or execute setup.sh
 
-# Suportted convertions
-ASCII to Docx
-
-Docx to ASCII
-
-# Feactures to add
-Upload file to deepl to translation
-Erase docx files after translation
-Use .srt extension instead of txt at export
-Use voice recognition and generate the subtitles
-
-- The sky is the limit
+# Features to add
+- Upload file to deepl to translation
+- Erase docx files after translation
+- Use .srt extension instead of txt at export
+- Use voice recognition and generate the subtitles
