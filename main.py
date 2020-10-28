@@ -7,7 +7,7 @@ import magic
 
 
 parser = argparse.ArgumentParser(
-    description='Converts to txt to docx and viceversa.'
+    description='Converts txt to docx and viceversa.'
 )
 
 parser.add_argument(
@@ -28,11 +28,11 @@ def convert_all(file_paths):
             print(f"File '{path}' doesn't exist, skipping...")
             continue
 
-        paths = os.listdir(path) if os.path.isdir(path) else [path]
+        # paths = os.listdir(path) if os.path.isdir(path) else [path]
 
-        for file_path in paths:
-            if not os.path.isdir(file_path):
-                convert(file_path)
+        # for file_path in paths:
+        #     if not os.path.isdir(file_path):
+        convert(path)
 
 
 def convert(file_in):
@@ -42,10 +42,12 @@ def convert(file_in):
 
     if file_type == "Microsoft OOXML":
         file_out = f"{basename}.txt"
-        docx_to_txt(file_in, file_out)        
+        docx_to_txt(file_in, file_out)
     elif file_type.startswith("ASCII text"):
         file_out = f"{basename}.docx"
         txt_to_docx(file_in, file_out)
+    else:
+        print(f"File type of {file_in} not recognized: {file_type}")
 
 
 def txt_to_docx(file_in, file_out):
