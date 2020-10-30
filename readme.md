@@ -22,3 +22,8 @@ use pip install -r requirements or execute setup.sh
 - Erase docx files after translation
 - Use .srt extension instead of txt at export
 - Use voice recognition and generate the subtitles
+
+
+# geckodriver version
+
+geckodriver-v0.24.0-linux64.tar

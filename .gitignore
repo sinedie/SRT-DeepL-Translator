@@ -1,2 +1,5 @@
 venv
 test
+geckodriver.log
+__pycache__
+*.pyc
