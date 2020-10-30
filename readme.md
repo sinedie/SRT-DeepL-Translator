@@ -17,9 +17,9 @@ optional arguments:
 ## Setup
 use ```pip install -r requirements.txt``` or ```execute setup.sh```
 
-### geckodriver version
+### Geckodriver version
 
-geckodriver-v0.24.0-linux64.tar
+Geckodriver -v0.24.0
 
 ## Features to add
 - Use voice recognition and generate the subtitles
