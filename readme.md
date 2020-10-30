@@ -1,6 +1,6 @@
-# subtitle-converter
+# Subtitle-converter
 
-# usage
+## Usage
 ```
 main.py [-h] [-v] path [path ...]
 
@@ -14,16 +14,13 @@ optional arguments:
     -v, --verbose: increase output verbosity
 ```
 
-# Dependeces
-use pip install -r requirements or execute setup.sh
+## Setup
+use ```pip install -r requirements.txt``` or ```execute setup.sh```
 
-# Features to add
-- Upload file to deepl to translation
-- Erase docx files after translation
-- Use .srt extension instead of txt at export
-- Use voice recognition and generate the subtitles
-
-
-# geckodriver version
+### geckodriver version
 
 geckodriver-v0.24.0-linux64.tar
+
+## Features to add
+- Use voice recognition and generate the subtitles
+
