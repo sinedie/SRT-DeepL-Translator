@@ -22,4 +22,5 @@ use ```pip install -r requirements.txt``` or ```execute setup.sh```
 Geckodriver -v0.24.0
 
 ## Features to add
+- Set language to traslate before start translation
 - Use voice recognition and generate the subtitles
