@@ -1,4 +1,4 @@
-# Subtitle-converter
+# SRT-DeepL translator using selenium
 
 ## Usage
 ```
@@ -23,4 +23,3 @@ Geckodriver -v0.24.0
 
 ## Features to add
 - Use voice recognition and generate the subtitles
-
