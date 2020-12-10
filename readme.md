@@ -4,7 +4,7 @@
 ```
 main.py [-h] [-v] path [path ...]
 
-Converts plain text files to docx and viceversa
+Traslate a .SRT file using DeepL and Selenium
 
 positional arguments:
     path: File to convert
