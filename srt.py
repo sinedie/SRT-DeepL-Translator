@@ -27,13 +27,14 @@ class SRT:
     def open(self, file_path):
         srt = []    # Container of subtitles on memory
 
-        with open(file_path, "r") as files:
+        with open(file_path, "r", errors='ignore') as files:
             lines = files.readlines()
 
             for line in lines:
                 # Id of line
                 if re.search('^[0-9]+$', line) is not None:
-                    srt.append(Subtitle(id=line[:-1]))
+                    new_subtitle_line = Subtitle(id=line[:-1])
+                    srt.append(new_subtitle_line)
                 # Time of line
                 elif re.search('^[0-9]{2}:[0-9]{2}:[0-9]{2}', line) is not None:
                     srt[-1].time = line[:-1]
@@ -61,6 +62,28 @@ class SRT:
         return text, id_f + 1
 
 
+    def update_text(self, first_sub_id, traslation):
+
+        for i in range(len(traslation)):
+            self.subtitles[first_sub_id + i].text = traslation[i]
+
+
+    def wrap_lines(self, max_letters=20):
+        for subtitle in self.subtitles:
+            if max_letters >= len(subtitle.text):
+                continue
+
+            phrases = [[]]
+            for word in subtitle.text.split():
+                if len(phrases[-1]) + len(word) < max_letters:
+                    phrases[-1].append(word)
+                else:
+                    phrases.append([word])
+            
+            phrases = [" ".join(phrase) for phrase in phrases]
+            subtitle.text = "\n".join(phrases)
+
+
     def save(self, file_path):
 
         file_out = open(file_path, "w")
@@ -70,23 +93,3 @@ class SRT:
             file_out.write(text)
 
         file_out.close()
-
-
-    def wrap_lines(self, max_letters=20):
-        for subtitle in self.subtitles:
-            if max_letters < len(subtitle.text):
-                phrases = [[]]
-                for word in subtitle.text.split():
-                    if len(phrases[-1]) + len(word) < max_letters:
-                        phrases[-1].append(word)
-                    else:
-                        phrases.append([word])
-                
-                phrases = [" ".join(phrase) for phrase in phrases]
-                subtitle.text = "\n".join(phrases)
-
-
-    def update_text(self, sub_id, traslation):
-
-        for i in range(len(traslation)):
-            self.subtitles[i + sub_id].text = traslation[i]

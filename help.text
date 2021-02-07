@@ -1,0 +1,20 @@
+usage: main.py [-h]
+               [-i {auto,chinese,dutch,english,french,german,italian,japanese,polish,portuguese,russian,spanish}]
+               [-o {chinese,dutch,english-us,english-uk,french,german,italian,japanese,polish,portuguese,portuguese-br,russian,spanish}]
+               [-v] [-vv] [-s]
+               path [path ...]
+
+translates .STR files using DeepL.com
+
+positional arguments:
+  path                  File to convert
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i {auto,chinese,dutch,english,french,german,italian,japanese,polish,portuguese,russian,spanish}, --input-lang {auto,chinese,dutch,english,french,german,italian,japanese,polish,portuguese,russian,spanish}
+                        Language to translate from
+  -o {chinese,dutch,english-us,english-uk,french,german,italian,japanese,polish,portuguese,portuguese-br,russian,spanish}, --output-lang {chinese,dutch,english-us,english-uk,french,german,italian,japanese,polish,portuguese,portuguese-br,russian,spanish}
+                        Language to translate to
+  -v, --verbose         Increase output verbosity
+  -vv, --debug          Increase output verbosity for debugging
+  -s                    Show browser window
