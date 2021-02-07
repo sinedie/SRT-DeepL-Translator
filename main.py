@@ -14,7 +14,7 @@ parser.add_argument(
     metavar='path',
     type=str,
     nargs='+',
-    help='File to convert'
+    help='Files to convert (if directory traslates all srt files recursively)'
 )
 
 parser.add_argument(

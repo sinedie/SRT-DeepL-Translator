@@ -2,12 +2,12 @@
 
 ## Usage
 ```
-main.py [-h] [-v] [-vv] [-s] [-i {language}] [-o {language}] path [path ...]
+main.py [-h] [-v] [-vv] [-s] [-i {language}] [-o {language}] [-w WRAP_LIMIT] [-x] path [path ...]
 
 Traslate a .SRT file using DeepL and Selenium
 
 positional arguments:
-    path: File to convert
+    path: Files to convert (if directory traslates all srt files recursively)
 
 optional arguments:
     -h, --help: Show this help message and exit
@@ -18,6 +18,8 @@ optional arguments:
         choices: { auto, chinese, dutch, english, french, german, italian, japanese, polish, portuguese, russian, spanish }
     -o, --output-lang: Language to translate to
         choices: { chinese, dutch, english-us, english-uk, french, german, italian, japanese, polish, portuguese, portuguese-br, russian, spanish}
+    -x, --delete: Delete files when traslated
+    -w WRAP_LIMIT, --wrap-limit WRAP_LIMIT: Number of characters to wrap the line. Including spaces
 ```
 
 ## Setup
