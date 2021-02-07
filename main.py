@@ -58,18 +58,41 @@ parser.add_argument(
 
 parser.add_argument(
     '-s',
-    dest="show_gui",
-    action='store_false',
+    '--show-gui',
+    action='store_true',
     help='Show browser window'
+)
+
+parser.add_argument(
+    '-w',
+    '--wrap-limit',
+    type=int,
+    help='Number of characters to wrap the line. Including spaces'
+)
+
+parser.add_argument(
+    '-x',
+    '--delete',
+    action='store_true',
+    help='Delete files when traslated'
 )
 
 
 args = parser.parse_args()
 logging.basicConfig(level=args.loglevel)
 
-if args.show_gui:
+if not args.show_gui:
     os.environ['MOZ_HEADLESS'] = '1'
 
+
 translator = deepl.translator()
-translator.translate(args.filepath, args.input_lang, args.output_lang)
+
+translator.translate(
+    args.filepath,
+    args.input_lang,
+    args.output_lang,
+    wrap_line_limit=args.wrap_limit,
+    delete_old=args.delete
+)
+
 translator.close()

@@ -40,6 +40,9 @@ class SRT:
                     srt[-1].time = line[:-1]
                 # Content of line
                 elif re.search('^$', line) is None:
+                    if len(srt[-1].text):
+                        srt[-1].text += ' '
+                        
                     srt[-1].text += line[:-1]
 
         return srt
@@ -68,20 +71,20 @@ class SRT:
             self.subtitles[first_sub_id + i].text = traslation[i]
 
 
-    def wrap_lines(self, max_letters=20):
+    def wrap_lines(self, max_letters):
         for subtitle in self.subtitles:
             if max_letters >= len(subtitle.text):
                 continue
 
-            phrases = [[]]
+            new_text = ''
             for word in subtitle.text.split():
-                if len(phrases[-1]) + len(word) < max_letters:
-                    phrases[-1].append(word)
+                n_lines = max_letters * (len(new_text) // max_letters)
+                if len(new_text) - n_lines + len(word) < max_letters:
+                    new_text += f'{word} '
                 else:
-                    phrases.append([word])
+                    new_text += f'\n{word} '
             
-            phrases = [" ".join(phrase) for phrase in phrases]
-            subtitle.text = "\n".join(phrases)
+            subtitle.text = new_text
 
 
     def save(self, file_path):

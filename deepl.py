@@ -83,10 +83,10 @@ class translator:
         languageButton.click()
 
 
-    def translate_srt(self, file, lang_from, lang_to):
+    def translate_srt(self, file_path, lang_from, lang_to, wrap_line_limit, delete_old):
 
-        logging.info(f'Traslating file {file}')
-        srt_file = SRT(file)
+        logging.info(f'Traslating file {file_path}')
+        srt_file = SRT(file_path)
 
         sub_id = 0  # ID of initial subtitle
         while sub_id < srt_file.n_subtitles:
@@ -122,17 +122,42 @@ class translator:
 
         # Wraping lines
         logging.info(f'Wraping lines')
-        srt_file.wrap_lines()
+        srt_file.wrap_lines(wrap_line_limit)
 
         # Saving file
-        filename = os.path.splitext(file)[0]
+        filename = os.path.splitext(file_path)[0]
         file_out = f'{filename}_{lang_to}.srt'
 
-        logging.info(f'saving {file_out}')
+        logging.info(f'Saving {file_out}')
         srt_file.save(file_out)
 
+        if delete_old:
+            logging.info(f'Deleting file {file_path}')
+            os.remove(file_path)
 
-    def translate(self, file_paths, lang_from, lang_to):
+
+    def traslate_all(self, file_paths, lang_from, lang_to, wrap_line_limit, delete_old):
+        for path in file_paths:
+
+            if not os.path.exists(path):
+                print(f"INFO: File {path} doesn't exist, skipping...")
+                continue
+
+            if os.path.isdir(path):
+                files_in_dir = os.listdir(path)
+
+                for file_name in files_in_dir:
+                    file_path = os.path.join(path, file_name)
+                    self.traslate_all([file_path], lang_from, lang_to)
+
+                return
+
+            extension = os.path.splitext(path)[1]
+            if extension.lower() == '.srt':
+                self.translate_srt(path, lang_from, lang_to, wrap_line_limit, delete_old)
+
+
+    def translate(self, file_paths, lang_from, lang_to, wrap_line_limit=20, delete_old=False):
 
         ### Preparing page
         languageToSelect = self.browser.find_element_by_class_name('lmt__language_select--target')
@@ -141,22 +166,7 @@ class translator:
         self.choose_language(languageFromSelect, lang_from)
         self.choose_language(languageToSelect, lang_to)
 
-
-        for path in file_paths:
-
-            if not os.path.exists(path):
-                print(f"INFO: File {path} doesn't exist, skipping...")
-                continue
-            
-            self.translate_srt(path, lang_from, lang_to)
-
-            # if os.path.isdir(path):
-            #     files_in_dir = os.listdir(path)
-            #     for file_path in [os.path.join(path, file_path) for file_path in files_in_dir]:
-            #         if not os.path.isdir(file_path):
-            #             translate_srt(file_path, lang_from, lang_to)
-            # else:
-            #    translate_srt(path, lang_from, lang_to)
+        self.traslate_all(file_paths, lang_from, lang_to, wrap_line_limit, delete_old)
 
 
     def close(self):
