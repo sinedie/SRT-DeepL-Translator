@@ -24,7 +24,7 @@ parser.add_argument(
     default='auto',
     choices=('auto', 'chinese', 'dutch', 'english', 'french', 'german',
             'italian', 'japanese', 'polish', 'portuguese', 'russian', 'spanish'),
-    help='Language to translate from'
+    help='Language to translate from. Default: auto'
 )
 
 parser.add_argument(
@@ -34,7 +34,7 @@ parser.add_argument(
     default='spanish',
     choices=('chinese', 'dutch', 'english-us', 'english-uk', 'french', 'german',
             'italian', 'japanese', 'polish', 'portuguese', 'portuguese-br', 'russian', 'spanish'),
-    help='Language to translate to'
+    help='Language to translate to. Default: spanish'
 )
 
 parser.add_argument(
@@ -67,7 +67,8 @@ parser.add_argument(
     '-w',
     '--wrap-limit',
     type=int,
-    help='Number of characters to wrap the line. Including spaces'
+    default=20,
+    help='Number of characters to wrap the line. Including spaces. Default: 20'
 )
 
 parser.add_argument(

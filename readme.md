@@ -14,12 +14,12 @@ optional arguments:
     -v, --verbose: Increase output verbosity
     -vv, --debug: Increase output verbosity for debugging
     -s: Show browser window
-    -i, --input-lang: Language to translate from
+    -i, --input-lang: Language to translate from. Default: auto
         choices: { auto, chinese, dutch, english, french, german, italian, japanese, polish, portuguese, russian, spanish }
-    -o, --output-lang: Language to translate to
+    -o, --output-lang: Language to translate to. Default: spanish
         choices: { chinese, dutch, english-us, english-uk, french, german, italian, japanese, polish, portuguese, portuguese-br, russian, spanish}
     -x, --delete: Delete files when traslated
-    -w WRAP_LIMIT, --wrap-limit WRAP_LIMIT: Number of characters to wrap the line. Including spaces
+    -w WRAP_LIMIT, --wrap-limit WRAP_LIMIT: Number of characters to wrap the line. Including spaces. Default: 20
 ```
 
 ## Setup
