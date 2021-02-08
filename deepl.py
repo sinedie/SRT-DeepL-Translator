@@ -148,7 +148,7 @@ class translator:
 
                 for file_name in files_in_dir:
                     file_path = os.path.join(path, file_name)
-                    self.traslate_all([file_path], lang_from, lang_to)
+                    self.traslate_all([file_path], lang_from, lang_to, wrap_line_limit, delete_old)
 
                 return
 
