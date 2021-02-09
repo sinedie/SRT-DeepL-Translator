@@ -22,8 +22,7 @@ parser.add_argument(
     '--input-lang',
     type=str,
     default='auto',
-    choices=('auto', 'chinese', 'dutch', 'english', 'french', 'german',
-            'italian', 'japanese', 'polish', 'portuguese', 'russian', 'spanish'),
+    choices=('auto', 'zh', 'nl', 'en', 'fr', 'de', 'it', 'ja', 'pl', 'pt', 'ru', 'es'),
     help='Language to translate from. Default: auto'
 )
 
@@ -31,10 +30,9 @@ parser.add_argument(
     '-o',
     '--output-lang',
     type=str,
-    default='spanish',
-    choices=('chinese', 'dutch', 'english-us', 'english-uk', 'french', 'german',
-            'italian', 'japanese', 'polish', 'portuguese', 'portuguese-br', 'russian', 'spanish'),
-    help='Language to translate to. Default: spanish'
+    default='es',
+    choices=('zh', 'nl', 'en-us', 'en-gb', 'fr', 'de', 'it', 'ja', 'pl', 'pt', 'pt-br', 'ru', 'es'),
+    help='Language to translate to. Default: es (spanish)'
 )
 
 parser.add_argument(

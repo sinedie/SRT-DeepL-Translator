@@ -10,23 +10,6 @@ from srt import SRT
 
 class translator:
 
-    languages = {
-        'auto': 'auto',
-        'chinese': 'zh',
-        'dutch': 'nl',
-        'english': 'en',
-        'english-us': 'en-us',
-        'english-uk': 'en-gb',
-        'french': 'fr',
-        'german': 'de',
-        'italian': 'it',
-        'japanese': 'ja',
-        'polish': 'pl',
-        'portuguese': 'pt',
-        'portuguese-br': 'pt-br',
-        'russian': 'ru',
-        'spanish': 'es'
-    }
 
     def __init__(self):
 
@@ -66,7 +49,7 @@ class translator:
 
         def is_the_right_language(button, language):
             button_dl_test_attrivute = button.get_attribute("dl-test").lower()
-            return button_dl_test_attrivute.endswith(self.languages[language])
+            return button_dl_test_attrivute.endswith(language)
 
         languageSelect.click()
         
@@ -75,7 +58,7 @@ class translator:
         languageButton = next( (button for button in languagesButtons if is_the_right_language(button, lang)), None )
 
         if not languageButton:
-            print(f'ERROR: Language {lang} was not found. Maybe you choose the same idiom on both')
+            print(f'ERROR: Language {lang} was not found. Maybe you choose the same on both?')
             self.close()
             os._exit(os.EX_OK)
             return
