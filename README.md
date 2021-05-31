@@ -1,18 +1,28 @@
 # SRT-DeepL translator using Selenium
 
+## Installation
+
+```
+pip install srt_deepl (not yet in production. Dont use it)
+```
+
 ## Usage
 
-### Installation
+### From python
 
 ```
-pip install srt_deepl
+from srt_deepl import translate (not yet in production. Dont use it)
 ```
-
-### Importing
-
-from srt_deepl import translate
 
 ### Command line
+
+#### Easy way
+
+```
+python main.py -g
+```
+
+#### Help
 
 ```
 usage: main.py [-h] [-i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv}]
@@ -39,12 +49,3 @@ optional arguments:
   -x, --delete          Delete files when traslated
 
 ```
-
-## Setup
-
-use `pip install -r requirements.txt` or `execute install_requirements.sh`
-
-## Features to add
-
-- Use voice recognition to generate the subtitles
-- Use OCR to extract forced subtitles

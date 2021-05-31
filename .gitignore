@@ -5,3 +5,4 @@ srt_test
 build
 dist
 srt_deepl.egg-info
+geckodriver.log
