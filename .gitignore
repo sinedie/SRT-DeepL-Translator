@@ -1,5 +1,7 @@
 venv
-test
-geckodriver.log
 __pycache__
 *.pyc
+srt_test
+build
+dist
+srt_deepl.egg-info

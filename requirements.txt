@@ -1,2 +1,6 @@
+easygui==0.98.2
+geckodriver-autoinstaller==0.1.0
+pyperclip==1.8.2
 selenium==3.141.0
-urllib3==1.25.11
+srt==3.4.1
+urllib3==1.26.5
