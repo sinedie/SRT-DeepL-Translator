@@ -1,0 +1,1 @@
+from main import translate, INPUT_LANG, OUTPUT_LANG
