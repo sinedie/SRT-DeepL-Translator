@@ -201,12 +201,12 @@ if __name__ == "__main__":
             choices=[
                 f"{lang} - [{description}]" for lang, description in INPUT_LANG.items()
             ]
-        ).split("-")[0]
+        ).split("-")[0].strip()
         args.output_lang = easygui.choicebox(
             choices=[
                 f"{lang} - [{description}]" for lang, description in OUTPUT_LANG.items()
             ]
-        ).split("-")[0]
+        ).split("-")[0].strip()
 
     if not args.show_browser:
         os.environ["MOZ_HEADLESS"] = "1"
