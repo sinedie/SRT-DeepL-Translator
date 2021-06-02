@@ -6,3 +6,4 @@ build
 dist
 srt_deepl.egg-info
 geckodriver.log
+.pytest_cache
