@@ -1,13 +1,19 @@
 from setuptools import setup, find_packages
 
+with open('requirements.txt') as f:
+    requirements = f.read().splitlines()
+
 setup(
     name="srt_deepl",
     description="Traslate a .SRT file using DeepL and Selenium.",
-    version="0.8.1",
+    url='https://github.com/sinedie/SRT-DeepL-Translator',
+    version="0.8.5",
     author="EAR",
     author_email="sinedie@protonmail.com",
-    packages=find_packages(),
+    license='FREE',
     python_requires=">=3.6",
+    install_requires=requirements,
+    packages=find_packages(),
     keywords=["python", "srt", "deepl", "languages", "translator", "subtitles"],
     classifiers=[
         "Development Status :: 1 - Planning",
