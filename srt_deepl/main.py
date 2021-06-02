@@ -3,9 +3,8 @@ import glob
 import logging
 import geckodriver_autoinstaller
 
-import srt_deepl.deepl
-
-from srt_deepl.srt_parser import wrap_line, save_srt
+from .deepl import Translator
+from .srt_parser import wrap_line, save_srt
 
 # Check if the current version of geckodriver exists
 geckodriver_autoinstaller.install()
@@ -68,7 +67,7 @@ OUTPUT_LANG = {
 
 
 def translate(filepath, lang_from, lang_to, wrap_limit, delete_old):
-    translator = deepl.Translator()
+    translator = Translator()
 
     lang_from = {
         "lang": lang_from,

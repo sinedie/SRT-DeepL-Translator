@@ -6,8 +6,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
-from srt_deepl.elements import TextArea, Button
-from srt_deepl.srt_parser import open_srt, get_srt_portions
+from .elements import TextArea, Button
+from .srt_parser import open_srt, get_srt_portions
 
 
 class Translator:
