@@ -1,9 +1,74 @@
 # SRT-DeepL translator using Selenium
 
+All the hard work is on the hands of the
+[DeepL](https://www.deepl.com/translator) creators. I didn't do shit.
+
+## Language support
+
+The same support as DeepL obviously
+
+### Input languages
+
+    auto: Any language (detect)
+    bg: Bulgarian
+    zh: Chinese
+    cs: Czech
+    da: Danish
+    nl: Dutch
+    en: English
+    et: Estonian
+    fi: Finnish
+    fr: French
+    de: German
+    el: Greek
+    hu: Hungarian
+    it: Italian
+    ja: Japanese
+    lv: Latvian
+    lt: Lithuanian
+    pl: Polish
+    pt: Portuguese
+    ro: Romanian
+    ru: Russian
+    sk: Slovak
+    sl: Slovenian
+    es: Spanish
+    sv: Swedish
+
+### Output languages
+
+    bg: Bulgarian
+    zh: Chinese (simplified)
+    cs: Czech
+    da: Danish
+    nl: Dutch
+    en: English
+    et: Estonian
+    fi: Finnish
+    fr: French
+    de: German
+    el: Greek
+    hu: Hungarian
+    it: Italian
+    ja: Japanese
+    lv: Latvian
+    lt: Lithuanian
+    pl: Polish
+    pt: Portuguese
+    br: Portuguese (Brazilian)
+    ro: Romanian
+    ru: Russian
+    sk: Slovak
+    sl: Slovenian
+    es: Spanish
+    sv: Swedish
+
 ## Installation
 
+[PyPi](https://pypi.org/project/srt-deepl/)
+
 ```
-pip install srt_deepl (not yet in production. Dont use it)
+pip install srt-deepl
 ```
 
 ## Usage
@@ -11,7 +76,15 @@ pip install srt_deepl (not yet in production. Dont use it)
 ### From python
 
 ```
-from srt_deepl import translate (not yet in production. Dont use it)
+from srt_deepl import translate
+
+translate(
+  filepath='./test.srt',
+  lang_from='en',
+  lang_to='es',
+  wrap_limit=50,
+  delete_old=False
+)
 ```
 
 ### Command line
@@ -19,12 +92,14 @@ from srt_deepl import translate (not yet in production. Dont use it)
 #### Easy way
 
 ```
-python main.py -g
+python -m srt_deepl -g
 ```
 
 #### Help
 
 ```
+python -m srt_deepl -h
+
 usage: main.py [-h] [-i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv}]
                [-o {bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,br,ro,ru,sk,sl,es,sv}] [-v] [-vv] [-g] [-s] [-w WRAP_LIMIT] [-x]
                [path]
