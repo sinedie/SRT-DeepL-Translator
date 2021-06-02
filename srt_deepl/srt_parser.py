@@ -23,7 +23,7 @@ def get_srt_portions(subtitles, characters=4500):
     for subtitle in subtitles:
         n_char = sum(len(sub.content) for sub in portion) + len(subtitle.content)
 
-        if n_char >= characters:
+        if n_char >= characters and len(portion) != 0:
             yield portion
             portion = []
 
@@ -33,15 +33,14 @@ def get_srt_portions(subtitles, characters=4500):
 
 
 def wrap_line(text, max_char):
-    new_text = ""
+    wraped_lines = []
     for word in text.split():
-        n_lines = max_char * (len(new_text) // max_char)
-        if len(new_text) - n_lines + len(word) < max_char:
-            new_text += f"{word} "
+        if len(wraped_lines) != 0 and len(wraped_lines[-1]) + len(word) < max_char:
+            wraped_lines[-1] += f" {word}"
         else:
-            new_text += f"\n{word} "
+            wraped_lines.append(f"{word}")
 
-    return new_text
+    return '\n'.join(wraped_lines)
 
 
 def save_srt(file_name, lang_to, subs):
