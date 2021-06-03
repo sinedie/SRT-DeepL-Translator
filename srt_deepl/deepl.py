@@ -1,6 +1,6 @@
 import logging
 import time
-import pyperclip
+# import pyperclip
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -71,13 +71,13 @@ class Translator:
             text = "\n".join(text)
 
             logging.info("Copying portion of file")
-            try:
-                # Copy/paste to text area
-                pyperclip.copy(text)
-                self.input_lang_from.write((Keys.CONTROL, "v"))
-            except:
-                # Copies letter to letter if copy/paste fail
-                self.input_lang_from.write((text))
+            # try:
+            #     # Copy/paste to text area
+            #     pyperclip.copy(text)
+            #     self.input_lang_from.write((Keys.CONTROL, "v"))
+            # except:
+            #     # Copies letter to letter if copy/paste fail
+            self.input_lang_from.write((text))
 
             logging.info("Waiting for traslation to complete")
             for _ in range(60):  # Maximun number of iterations 60 seconds
