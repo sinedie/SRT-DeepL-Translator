@@ -1,6 +1,7 @@
 import argparse
 import easygui
 import logging
+import os
 
 from .main import INPUT_LANG, OUTPUT_LANG, translate
 
