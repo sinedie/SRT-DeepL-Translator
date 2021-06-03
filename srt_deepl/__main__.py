@@ -103,6 +103,11 @@ if args.show_gui:
 
 if not args.show_browser:
     os.environ["MOZ_HEADLESS"] = "1"
+else:
+    try:
+        os.environ.pop("MOZ_HEADLESS")
+    except:
+        pass
 
 translate(
     args.filepath,
