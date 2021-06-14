@@ -130,3 +130,8 @@ optional arguments:
   -x, --delete          Delete files when traslated
 
 ```
+
+# TODO
+
+- Unit test
+- Bug fix (if there are)
