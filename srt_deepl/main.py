@@ -3,6 +3,8 @@ import glob
 import logging
 import geckodriver_autoinstaller
 
+from selenium import webdriver
+
 from .deepl import Translator
 from .srt_parser import wrap_line, save_srt
 
@@ -66,8 +68,19 @@ OUTPUT_LANG = {
 }
 
 
-def translate(filepath, lang_from, lang_to, wrap_limit, delete_old):
-    translator = Translator()
+def translate(
+    filepath,
+    lang_from,
+    lang_to,
+    wrap_limit=50,
+    delete_old=False,
+    driver=None,
+):
+    if driver is None:
+        driver = webdriver.Firefox()
+        driver.maximize_window()
+
+    translator = Translator(driver)
 
     lang_from = {
         "lang": lang_from,

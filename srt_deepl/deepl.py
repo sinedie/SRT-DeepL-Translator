@@ -1,8 +1,6 @@
 import logging
 import time
-# import pyperclip
 
-from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 
@@ -11,10 +9,8 @@ from .srt_parser import open_srt, get_srt_portions
 
 
 class Translator:
-    def __init__(self):
-        logging.info("Opening browser")
-        self.driver = webdriver.Firefox()
-        self.driver.maximize_window()
+    def __init__(self, driver):
+        self.driver = driver
 
         logging.info("Going to DeepL")
         self.driver.get("https://www.deepl.com/translator")
@@ -71,12 +67,6 @@ class Translator:
             text = "\n".join(text)
 
             logging.info("Copying portion of file")
-            # try:
-            #     # Copy/paste to text area
-            #     pyperclip.copy(text)
-            #     self.input_lang_from.write((Keys.CONTROL, "v"))
-            # except:
-            #     # Copies letter to letter if copy/paste fail
             self.input_lang_from.write((text))
 
             logging.info("Waiting for traslation to complete")
