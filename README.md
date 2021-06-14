@@ -75,6 +75,11 @@ pip install srt-deepl
 
 ### From python
 
+`driver=None` use the default Firefox web driver with a random generated
+free proxy from [Free Proxy List](https://free-proxy-list.net/). If you wanna
+use a custom webdriver, eg with Tor, you could pass it on this argument. Check
+examples folder for a hint of how would you do it.
+
 ```
 from srt_deepl import translate
 
@@ -83,7 +88,8 @@ translate(
   lang_from='en',
   lang_to='es',
   wrap_limit=50,
-  delete_old=False
+  delete_old=False,
+  driver=None
 )
 ```
 
