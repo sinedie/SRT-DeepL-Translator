@@ -1,12 +1,15 @@
 import os
 import glob
 import logging
+import random
 import geckodriver_autoinstaller
 
 from selenium import webdriver
+from selenium.webdriver.common.proxy import Proxy, ProxyType
 
 from .deepl import Translator
 from .srt_parser import wrap_line, save_srt
+from .utils import get_proxies
 
 # Check if the current version of geckodriver exists
 geckodriver_autoinstaller.install()
@@ -76,8 +79,25 @@ def translate(
     delete_old=False,
     driver=None,
 ):
+
     if driver is None:
-        driver = webdriver.Firefox()
+        proxies = get_proxies()
+        if len(proxies) == 0:
+            proxies = get_proxies(https=False)
+
+        my_proxy = random.choice(proxies)
+
+        proxy = Proxy(
+            {
+                "proxyType": ProxyType.MANUAL,
+                "httpProxy": my_proxy,
+                "ftpProxy": my_proxy,
+                "sslProxy": my_proxy,
+                "noProxy": "",  # set this value as desired
+            }
+        )
+
+        driver = webdriver.Firefox(proxy=proxy)
         driver.maximize_window()
 
     translator = Translator(driver)

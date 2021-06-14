@@ -3,11 +3,21 @@ from selenium.webdriver.common.by import By
 
 
 class BaseElement:
-    def __init__(self, driver, locate_by, locate_value):
+    def __init__(self, driver, locate_by, locate_value, multiple=False):
         self.driver = driver
         locator = (getattr(By, locate_by.upper(), "ID"), locate_value)
-        WebDriverWait(driver, 100).until(lambda driver: driver.find_element(*locator))
-        self.element = driver.find_element(*locator)
+        find_element = driver.find_elements if multiple else driver.find_element
+        WebDriverWait(driver, 100).until(lambda driver: find_element(*locator))
+        self.element = find_element(*locator)
+
+
+class Text(BaseElement):
+    @property
+    def text(self):
+        if type(self.element) == list:
+            return [ele.text for ele in self.element]
+        else:
+            return self.element.text
 
 
 class TextArea(BaseElement):
