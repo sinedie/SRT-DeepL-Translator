@@ -1,5 +1,7 @@
 # SRT-DeepL translator using Selenium
 
+Disclaimer: 06/05/2022 - I still work on this, just dont have enough time lately. If u want to collaborate, get in touch and keep waiting for updates.
+
 All the hard work is on the hands of the
 [DeepL](https://www.deepl.com/translator) creators. I didn't do shit.
 
