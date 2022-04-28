@@ -69,13 +69,13 @@ class Translator:
             logging.info("Copying portion of file")
             self.input_lang_from.write((text))
 
-            logging.info("Waiting for traslation to complete")
+            logging.info("Waiting for translation to complete")
             for _ in range(60):  # Maximun number of iterations 60 seconds
-                traslation = self.input_lang_to.value
+                translation = self.input_lang_to.value
                 if (
-                    len(traslation) != 0
-                    and len(text.splitlines()) == len(traslation.splitlines())
-                    and "[...]" not in traslation
+                    len(translation) != 0
+                    and len(text.splitlines()) == len(translation.splitlines())
+                    and "[...]" not in translation
                 ):
                     break
                 time.sleep(1)
@@ -86,10 +86,16 @@ class Translator:
                     Make sure your SRT file does not contain the characters '[...]'"""
                 )
 
-            logging.info("Updating portion with traslation")
-            traslation = self.input_lang_to.value.splitlines()
+            if text == translation:
+                raise Exception(
+                    """No translation occurred.\n
+                    Make sure your SRT file does not contain HTML tags and/or HTML elements'"""
+                )
+
+            logging.info("Updating portion with translation")
+            translation = translation.splitlines()
 
             for i in range(len(portion)):
-                portion[i].content = traslation[i]
+                portion[i].content = translation[i]
 
         return subs

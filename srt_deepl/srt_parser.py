@@ -1,17 +1,20 @@
 import srt
 import logging
+import re
+
+CLEANR = re.compile('<.*?>')
 
 
 def open_srt(file_path):
     logging.info(f"Reading {file_path}")
 
-    with open(file_path, "r", errors="ignore") as srt_file:
+    with open(file_path, "r", encoding="utf-8", errors="ignore") as srt_file:
         srt_file = srt.parse(srt_file)
         subs = list(srt_file)
         subs = list(srt.sort_and_reindex(subs))
 
         for sub in subs:
-            sub.content = srt.make_legal_content(sub.content)
+            sub.content = srt.make_legal_content(CLEANR.sub('', sub.content))
             sub.content = sub.content.strip().replace("\n", " ")
 
         return subs
@@ -47,5 +50,5 @@ def save_srt(file_name, lang_to, subs):
 
     logging.info(f"Saving {file_name}_{lang_to}")
     subs = srt.compose(subs)
-    with open(f"{file_name}_{lang_to}.srt", "w") as file_out:
+    with open(f"{file_name}_{lang_to}.srt", "w", encoding="utf-8") as file_out:
         file_out.write(subs)
