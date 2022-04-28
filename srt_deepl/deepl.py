@@ -87,7 +87,7 @@ class Translator:
                 )
 
             logging.info("Updating portion with translation")
-            translation = self.input_lang_to.value.splitlines()
+            translation = translation.splitlines()
 
             for i in range(len(portion)):
                 portion[i].content = translation[i]
