@@ -86,6 +86,12 @@ class Translator:
                     Make sure your SRT file does not contain the characters '[...]'"""
                 )
 
+            if text == translation:
+                raise Exception(
+                    """No translation occurred.\n
+                    Make sure your SRT file does not contain HTML tags and/or HTML elements'"""
+                )
+
             logging.info("Updating portion with translation")
             translation = translation.splitlines()
 
