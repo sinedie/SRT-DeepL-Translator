@@ -1,5 +1,8 @@
 import srt
 import logging
+import re
+
+CLEANR = re.compile('<.*?>')
 
 
 def open_srt(file_path):
@@ -11,7 +14,7 @@ def open_srt(file_path):
         subs = list(srt.sort_and_reindex(subs))
 
         for sub in subs:
-            sub.content = srt.make_legal_content(sub.content)
+            sub.content = srt.make_legal_content(CLEANR.sub('', sub.content))
             sub.content = sub.content.strip().replace("\n", " ")
 
         return subs
