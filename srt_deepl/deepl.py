@@ -50,10 +50,10 @@ class Translator:
             "lmt__language_select--target",
         ).click()
 
-        input_lang_button = Button(
+        Button(
             self.driver,
             "XPATH",
-            f"//button[@dl-test='translator-lang-option-{lang_to['lang'].lower()}-{lang_to['lang'].upper()}'] | //button[text()='{lang_to['description']}']",
+            f"//button[@dl-test='translator-lang-option-{lang_to['lang'].lower()}'] | //button[text()='{lang_to['description']}']",
         ).click()
 
     def translate(self, file_path, lang_from, lang_to, wrap_limit):
