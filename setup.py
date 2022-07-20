@@ -7,7 +7,7 @@ setup(
     name="srt_deepl",
     description="Traslate a .SRT file using DeepL and Selenium.",
     url='https://github.com/sinedie/SRT-DeepL-Translator',
-    version="0.8.5",
+    version="0.9.1",
     author="EAR",
     author_email="sinedie@protonmail.com",
     license='FREE',
