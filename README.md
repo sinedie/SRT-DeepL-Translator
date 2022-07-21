@@ -1,6 +1,6 @@
 # SRT-DeepL translator using Selenium
 
-Disclaimer: 06/05/2022 - I still work on this, just dont have enough time lately. If u want to collaborate, get in touch and keep waiting for updates.
+If u want to collaborate, get in touch and keep waiting for updates.
 
 All the hard work is on the hands of the
 [DeepL](https://www.deepl.com/translator) creators. I didn't do shit.
@@ -9,8 +9,7 @@ All the hard work is on the hands of the
 
 The same support as DeepL obviously
 
-### Input languages
-
+### Languages
     auto: Any language (detect)
     bg: Bulgarian
     zh: Chinese
@@ -37,36 +36,6 @@ The same support as DeepL obviously
     es: Spanish
     sv: Swedish
 
-### Output languages
-
-    bg: Bulgarian
-    zh: Chinese (simplified)
-    cs: Czech
-    da: Danish
-    nl: Dutch
-    en: English
-    et: Estonian
-    fi: Finnish
-    fr: French
-    de: German
-    el: Greek
-    hu: Hungarian
-    it: Italian
-    ja: Japanese
-    lv: Latvian
-    lt: Lithuanian
-    pl: Polish
-    pt: Portuguese
-    br: Portuguese (Brazilian)
-    ro: Romanian
-    ru: Russian
-    sk: Slovak
-    sl: Slovenian
-    es: Spanish
-    sv: Swedish
-
-## Installation
-
 [PyPi](https://pypi.org/project/srt-deepl/)
 
 ```
@@ -90,7 +59,6 @@ translate(
   lang_from='en',
   lang_to='es',
   wrap_limit=50,
-  delete_old=False,
   driver=None
 )
 ```
@@ -129,11 +97,11 @@ optional arguments:
   -s, --show-browser    Show browser window
   -w WRAP_LIMIT, --wrap-limit WRAP_LIMIT
                         Number of characters to wrap the line. Including spaces. Default: 50
-  -x, --delete          Delete files when traslated
 
 ```
 
 # TODO
 
-- Unit test
-- Bug fix (if there are)
+- Enable other translators
+- Unit test with pytest
+- Get srt files with voice recognition (maybe in a diferent program)
