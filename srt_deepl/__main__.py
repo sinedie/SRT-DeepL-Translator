@@ -3,11 +3,10 @@ import easygui
 import logging
 import os
 
-from .main import INPUT_LANG, OUTPUT_LANG, translate
+from .main import translate
+from .deepl import DeeplTranslator
 
-parser = argparse.ArgumentParser(
-    description="Translates .STR files using DeepL.com",
-)
+parser = argparse.ArgumentParser(description="Translates .STR files using DeepL.com")
 
 parser.add_argument(
     "filepath",
@@ -22,7 +21,7 @@ parser.add_argument(
     "--input-lang",
     type=str,
     default="auto",
-    choices=INPUT_LANG.keys(),
+    choices=DeeplTranslator.LANGUAGES.keys(),
     help="Language to translate from. Default: auto",
 )
 
@@ -31,7 +30,7 @@ parser.add_argument(
     "--output-lang",
     type=str,
     default="es",
-    choices=OUTPUT_LANG.keys(),
+    choices=DeeplTranslator.LANGUAGES.keys(),
     help="Language to translate to. Default: es (spanish)",
 )
 
@@ -76,10 +75,6 @@ parser.add_argument(
     help="Number of characters to wrap the line. Including spaces. Default: 50",
 )
 
-parser.add_argument(
-    "-x", "--delete", action="store_true", help="Delete files when traslated"
-)
-
 args = parser.parse_args()
 logging.basicConfig(level=args.loglevel)
 
@@ -90,16 +85,26 @@ if not args.filepath:
     raise Exception("No folder found")
 
 if args.show_gui:
-    args.input_lang = easygui.choicebox(
-        choices=[
-            f"{lang} - [{description}]" for lang, description in INPUT_LANG.items()
-        ]
-    ).split("-")[0].strip()
-    args.output_lang = easygui.choicebox(
-        choices=[
-            f"{lang} - [{description}]" for lang, description in OUTPUT_LANG.items()
-        ]
-    ).split("-")[0].strip()
+    args.input_lang = (
+        easygui.choicebox(
+            choices=[
+                f"{lang} - [{description}]"
+                for lang, description in DeeplTranslator.LANGUAGES.items()
+            ]
+        )
+        .split("-")[0]
+        .strip()
+    )
+    args.output_lang = (
+        easygui.choicebox(
+            choices=[
+                f"{lang} - [{description}]"
+                for lang, description in DeeplTranslator.LANGUAGES.items()
+            ]
+        )
+        .split("-")[0]
+        .strip()
+    )
 
 if not args.show_browser:
     os.environ["MOZ_HEADLESS"] = "1"
@@ -113,7 +118,5 @@ translate(
     args.filepath,
     args.input_lang,
     args.output_lang,
-    args.wrap_limit,
-    args.delete,
+    wrap_limit=args.wrap_limit,
 )
-

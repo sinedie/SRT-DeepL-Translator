@@ -16,7 +16,6 @@ with TorBrowserDriver(tbb_dir, tor_cfg=cm.USE_STEM) as driver:
         lang_from,
         lang_to,
         wrap_limit=50,
-        delete_old=False,
         driver=driver,
     )
 

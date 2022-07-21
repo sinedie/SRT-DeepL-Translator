@@ -20,7 +20,6 @@ translate(
     "en", # original language
     "hu", # desired language
     wrap_limit=50,
-    delete_old=False,
     driver=driver,
 )
 
