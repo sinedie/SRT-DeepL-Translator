@@ -1,4 +1,5 @@
 import sys
+import logging
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
