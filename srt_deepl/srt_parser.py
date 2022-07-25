@@ -59,12 +59,12 @@ class SrtFile:
 
         return "\n".join(wraped_lines)
 
-    def translate(self, translator: Translator) -> None:
+    def translate(self, translator: Translator, lang_in: str, lang_out: str) -> None:
         for subs_slice in self.get_next_portion(translator.max_char):
             text = [sub.content for sub in subs_slice]
             text = "\n".join(text)
 
-            translation = translator.translate(text)
+            translation = translator.translate(text, lang_in, lang_out)
             translation = translation.splitlines()
 
             logging.info("Updating portion with translation")

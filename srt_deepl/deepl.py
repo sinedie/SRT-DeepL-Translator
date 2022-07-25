@@ -10,7 +10,7 @@ from .elements import TextArea, Button, BaseElement, Text
 class Translator(ABC):
     max_char: int
 
-    def translate(self, text: str) -> str:
+    def translate(self, text: str, lang_in: str, lang_out: str) -> str:
         pass
 
 
@@ -45,15 +45,13 @@ class DeeplTranslator(Translator):
         sv="Swedish",
     )
 
-    def __init__(self, driver: WebDriver, lang_in: str, lang_out: str) -> None:
+    def __init__(self, driver: WebDriver) -> None:
+        self.driver = driver
         self.open_webpage(driver)
 
         self.pop_up = BaseElement(driver, "CLASS_NAME", "lmt__progress_popup")
         self.input_lang_from = TextArea(driver, "CLASS_NAME", "lmt__source_textarea")
         self.input_lang_to = TextArea(driver, "CLASS_NAME", "lmt__target_textarea")
-
-        self.set_input_language(driver, lang_in)
-        self.set_output_language(driver, lang_out)
 
     def open_webpage(self, driver: WebDriver) -> None:
         logging.info(f"Going to {self.URL}")
@@ -86,7 +84,10 @@ class DeeplTranslator(Translator):
             and not self.pop_up.element.is_displayed()
         )
 
-    def translate(self, text: str) -> str:
+    def translate(self, text: str, lang_in: str, lang_out: str) -> str:
+        self.set_input_language(self.driver, lang_in)
+        self.set_output_language(self.driver, lang_out)
+
         self.input_lang_from.write((text))
 
         # Maximun number of iterations 60 seconds
@@ -238,15 +239,13 @@ class GoogleTranslator(Translator):
         "zu": "Zulu",
     }
 
-    def __init__(self, driver: WebDriver, lang_in: str, lang_out: str) -> None:
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
         self.open_webpage(driver)
 
         input_lang_from_xpath = "//textarea[@aria-label='Source text']"
         self.input_lang_from = TextArea(driver, "XPATH", input_lang_from_xpath)
 
-        self.set_input_language(driver, lang_in)
-        self.set_output_language(driver, lang_out)
 
     def open_webpage(self, driver: WebDriver) -> None:
         logging.info(f"Going to {self.URL}")
@@ -285,7 +284,10 @@ class GoogleTranslator(Translator):
             and translation != "Translating..."
         )
 
-    def translate(self, text: str) -> str:
+    def translate(self, text: str, lang_in: str, lang_out: str) -> str:
+        self.set_input_language(self.driver, lang_in)
+        self.set_output_language(self.driver, lang_out)
+
         self.input_lang_from.write((text))
 
         input_lang_to_xpath = "/html/body/c-wiz/div/div[2]/c-wiz/div[2]/c-wiz/div[1]/div[2]/div[3]/c-wiz[2]/div[8]/div/div[1]/span[1]/span/span"

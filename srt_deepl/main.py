@@ -15,7 +15,7 @@ from .srt_parser import SrtFile
 
 
 def create_proxy() -> Proxy:
-    logging.info('Getting a new Proxy from https://www.sslproxies.org/')
+    logging.info("Getting a new Proxy from https://www.sslproxies.org/")
     proxy = FreeProxy().get()
     proxy = Proxy(
         dict(
@@ -30,11 +30,11 @@ def create_proxy() -> Proxy:
 
 
 def create_driver(proxy: Proxy | None = None) -> WebDriver:
-    logging.info('Creating Selenium Webdriver instance')
+    logging.info("Creating Selenium Webdriver instance")
     try:
         driver = webdriver.Firefox(proxy=proxy)
     except WebDriverException:
-        logging.info('Installing Firefox GeckoDriver cause it isn\'t installed')
+        logging.info("Installing Firefox GeckoDriver cause it isn't installed")
         get_driver = GetGeckoDriver()
         get_driver.install()
 
@@ -52,10 +52,10 @@ def translate(
     folder: str,
     lang_from: str,
     lang_to: str,
+    wrap_limit: int = 50,
     driver: WebDriver | None = None,
     proxy: Proxy | None = None,
-    wrap_limit: int = 50,
-    translator: Translator = DeeplTranslator
+    translator: Translator | None = None,
 ) -> None:
 
     if proxy is None:
@@ -64,11 +64,12 @@ def translate(
     if driver is None:
         driver = create_driver(proxy)
 
-    translator_object = translator(driver, lang_from, lang_to)
+    if translator is None:
+        translator = DeeplTranslator(driver)
 
     for fpath in get_srt_files(folder):
         srt = SrtFile(fpath)
-        srt.translate(translator_object)
+        srt.translate(translator, lang_from, lang_to)
         srt.wrap_lines(wrap_limit)
         srt.save(f"{os.path.splitext(fpath)[0]}_{lang_to}.srt")
 
