@@ -1,5 +1,8 @@
+import sys
+
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 from selenium import webdriver
 
 
@@ -14,10 +17,24 @@ class BaseElement:
     ) -> None:
 
         self.driver = driver
-        locator = (getattr(By, locate_by.upper(), "ID"), locate_value)
+        locator = (getattr(By, locate_by.upper(), "id"), locate_value)
         find_element = driver.find_elements if multiple else driver.find_element
-        WebDriverWait(driver, wait_time).until(lambda driver: find_element(*locator))
-        self.element = find_element(*locator)
+        try:
+            WebDriverWait(driver, wait_time).until(
+                lambda driver: find_element(*locator)
+            )
+            self.element = find_element(*locator)
+        except TimeoutException:
+            print(f"Timed out trying to get element ({locate_by} = {locate_value})")
+            logging.info("Closing browser")
+            driver.close()
+            sys.exit()
+
+
+class Text(BaseElement):
+    @property
+    def text(self) -> str:
+        return self.element.get_attribute("text")
 
 
 class TextArea(BaseElement):

@@ -9,7 +9,6 @@ from .deepl import Translator
 
 class SrtFile:
     subtitles = []
-    portion_sizes = 4500
 
     def __init__(self, file_path: str) -> None:
         logging.info(f"Reading {file_path}")
@@ -20,13 +19,13 @@ class SrtFile:
             subtitles = list(srt.sort_and_reindex(subtitles))
             self.subtitles = self.clean_subs_content(subtitles)
 
-    def __iter__(self) -> Generator:
+    def get_next_portion(self, portion_sizes: int= 4500) -> Generator:
         portion = []
 
         for subtitle in self.subtitles:
             n_char = sum(len(sub.content) for sub in portion) + len(subtitle.content)
 
-            if n_char >= self.portion_sizes and len(portion) != 0:
+            if n_char >= portion_sizes and len(portion) != 0:
                 yield portion
                 portion = []
 
@@ -61,7 +60,7 @@ class SrtFile:
         return "\n".join(wraped_lines)
 
     def translate(self, translator: Translator) -> None:
-        for subs_slice in self:
+        for subs_slice in self.get_next_portion(translator.max_char):
             text = [sub.content for sub in subs_slice]
             text = "\n".join(text)
 
