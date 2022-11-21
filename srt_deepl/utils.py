@@ -7,7 +7,7 @@ def get_proxies(https=True):
     driver.get("https://free-proxy-list.net/")
 
     proxies = []
-    table_rows = Text(driver, "XPATH", "//tr[@role='row']", multiple=True).text
+    table_rows = Text(driver, "XPATH", "//div[contains(@class, 'fpl-list')]/table/tbody/tr", multiple=True).text
     for proxy in table_rows:
         proxy = proxy.split()
         proxy = {"ip": proxy[0], "port": proxy[1], "https": "yes" in proxy}
