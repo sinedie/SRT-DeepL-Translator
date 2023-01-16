@@ -11,8 +11,6 @@ from .deepl import Translator
 from .srt_parser import wrap_line, save_srt
 from .utils import get_proxies
 
-# Check if the current version of geckodriver exists
-geckodriver_autoinstaller.install()
 
 INPUT_LANG = {
     "auto": "Any language (detect)",
@@ -28,6 +26,7 @@ INPUT_LANG = {
     "de": "German",
     "el": "Greek",
     "hu": "Hungarian",
+    "id": "Indonesian",
     "it": "Italian",
     "ja": "Japanese",
     "lv": "Latvian",
@@ -40,7 +39,10 @@ INPUT_LANG = {
     "sl": "Slovenian",
     "es": "Spanish",
     "sv": "Swedish",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
 }
+
 
 OUTPUT_LANG = {
     "bg": "Bulgarian",
@@ -48,26 +50,30 @@ OUTPUT_LANG = {
     "cs": "Czech",
     "da": "Danish",
     "nl": "Dutch",
-    "en": "English",
+    "en-US": "English (American)",
+    "en-GB": "English (British)",
     "et": "Estonian",
     "fi": "Finnish",
     "fr": "French",
     "de": "German",
     "el": "Greek",
     "hu": "Hungarian",
+    "id": "Indonesian",
     "it": "Italian",
     "ja": "Japanese",
     "lv": "Latvian",
     "lt": "Lithuanian",
     "pl": "Polish",
-    "pt": "Portuguese",
-    "br": "Portuguese (Brazilian)",
+    "pt-PT": "Portuguese",
+    "pt-BR": "Portuguese (Brazilian)",
     "ro": "Romanian",
     "ru": "Russian",
     "sk": "Slovak",
     "sl": "Slovenian",
     "es": "Spanish",
     "sv": "Swedish",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
 }
 
 
@@ -79,6 +85,9 @@ def translate(
     delete_old=False,
     driver=None,
 ):
+
+    # Check if the current version of geckodriver exists
+    geckodriver_autoinstaller.install()
 
     if driver is None:
         proxies = get_proxies()

@@ -12,6 +12,7 @@ All the hard work is on the hands of the
 The same support as DeepL obviously
 
 ### Languages
+
     auto: Any language (detect)
     bg: Bulgarian
     zh: Chinese
@@ -25,6 +26,7 @@ The same support as DeepL obviously
     de: German
     el: Greek
     hu: Hungarian
+    id : Indonesian
     it: Italian
     ja: Japanese
     lv: Latvian
@@ -37,6 +39,8 @@ The same support as DeepL obviously
     sl: Slovenian
     es: Spanish
     sv: Swedish
+    tr : Turkish
+    uk : Ukrainian
 
 [PyPi](https://pypi.org/project/srt-deepl/)
 
@@ -78,9 +82,9 @@ python -m srt_deepl -g
 ```
 python -m srt_deepl -h
 
-usage: main.py [-h] [-i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv}]
-               [-o {bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,br,ro,ru,sk,sl,es,sv}] [-v] [-vv] [-g] [-s] [-w WRAP_LIMIT] [-x]
-               [path]
+usage: main.py [-h] [-i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv,tr,uk}]
+                   [-o {bg,zh,cs,da,nl,en-US,en-GB,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt-PT,pt-BR,ro,ru,sk,sl,es,sv,tr,uk}] [-v] [-vv] [-g] [-s] [-w WRAP_LIMIT] [-x]
+                   [path]
 
 Translates .STR files using DeepL.com
 
@@ -89,9 +93,9 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv}, --input-lang {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv}
+  -i {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv,tr,uk}, --input-lang {auto,bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt,ro,ru,sk,sl,es,sv,tr,uk}
                         Language to translate from. Default: auto
-  -o {bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,br,ro,ru,sk,sl,es,sv}, --output-lang {bg,zh,cs,da,nl,en,et,fi,fr,de,el,hu,it,ja,lv,lt,pl,pt,br,ro,ru,sk,sl,es,sv}
+  -o {bg,zh,cs,da,nl,en-US,en-GB,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt-PT,pt-BR,ro,ru,sk,sl,es,sv,tr,uk}, --output-lang {bg,zh,cs,da,nl,en-US,en-GB,et,fi,fr,de,el,hu,id,it,ja,lv,lt,pl,pt-PT,pt-BR,ro,ru,sk,sl,es,sv,tr,uk}
                         Language to translate to. Default: es (spanish)
   -v, --verbose         Increase output verbosity
   -vv, --debug          Increase output verbosity for debugging
@@ -101,9 +105,3 @@ optional arguments:
                         Number of characters to wrap the line. Including spaces. Default: 50
 
 ```
-
-# TODO
-
-- Enable other translators
-- Unit test with pytest
-- Get srt files with voice recognition (maybe in a diferent program)
