@@ -1,6 +1,6 @@
 # SRT-DeepL translator using Selenium
 
-# I thought that it would be better if you can choose your translator, so all future work will be directed to: https://github.com/sinedie/SRTranslator. Check it out
+# Unmaintained. All future work will be directed to: https://github.com/sinedie/SRTranslator.
 
 If u want to collaborate, get in touch and keep waiting for updates.
 
